@@ -7,6 +7,10 @@ use Livewire\Component;
 class CursorRules extends Component
 {
     public string $phpVersion = '8.3';
+    public string $laravelVersion = '11';
+    public string $codeStyling = 'PSR-12';
+    public string $actionOrService = 'Service';
+    public string $testingFramework = 'Pest';
     public string $rulesText;
 
     public function mount()
@@ -20,12 +24,40 @@ class CursorRules extends Component
         $this->updateRulesText();
     }
 
+    public function updatedLaravelVersion()
+    {
+        $this->updateRulesText();
+    }
+
+    public function updatedCodeStyling()
+    {
+        $this->updateRulesText();
+    }
+
+    public function updatedActionOrService()
+    {
+        $this->updateRulesText();
+    }
+
+    public function updatedTestingFramework()
+    {
+        $this->updateRulesText();
+    }
+
     private function updateRulesText()
     {
-        $phpVersionText = $this->phpVersion === 'none' ? '' : $this->phpVersion;
-        $phpVersionString = $phpVersionText ? "PHP version {$phpVersionText}+" : "PHP";
+        $template = file_get_contents(resource_path('views/cursorrules-template.blade.php'));
         
-        $this->rulesText = "You are a senior developer working on Laravel project. Please use Laravel 11+ and {$phpVersionString} syntax.";
+        // Replace template variables with their values
+        $replacements = [
+            '{{ $phpVersion ?? \'\' }}' => $this->phpVersion,
+            '{{ $laravelVersion ?? \'\' }}' => $this->laravelVersion,
+            '{{ $codeStyling ?? \'PSR-12\' }}' => $this->codeStyling,
+            '{{ $actionOrService ?? \'Service\' }}' => $this->actionOrService,
+            '{{ $testingFramework ?? \'Pest\' }}' => $this->testingFramework,
+        ];
+        
+        $this->rulesText = str_replace(array_keys($replacements), array_values($replacements), $template);
     }
 
     public function render()

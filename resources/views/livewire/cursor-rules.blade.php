@@ -7,6 +7,7 @@
                     <div class="mb-6">
                         <h2 class="text-xl font-semibold mb-4">Parameters</h2>
                         
+                        <!-- PHP Version -->
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2">
                                 PHP Version
@@ -29,6 +30,62 @@
                                 @endforeach
                             </div>
                         </div>
+
+                        <!-- Laravel Version -->
+                        <div class="mb-4">
+                            <label for="laravel-version" class="block text-gray-700 text-sm font-bold mb-2">
+                                Laravel Version
+                            </label>
+                            <input 
+                                id="laravel-version" 
+                                wire:model.live="laravelVersion" 
+                                type="text" 
+                                class="w-full p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            >
+                        </div>
+
+                        <!-- Code Styling -->
+                        <div class="mb-4">
+                            <label for="code-styling" class="block text-gray-700 text-sm font-bold mb-2">
+                                Code Styling
+                            </label>
+                            <input 
+                                id="code-styling" 
+                                wire:model.live="codeStyling" 
+                                type="text" 
+                                class="w-full p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            >
+                        </div>
+
+                        <!-- Action/Service -->
+                        <div class="mb-4">
+                            <label for="action-service" class="block text-gray-700 text-sm font-bold mb-2">
+                                Action/Service
+                            </label>
+                            <select 
+                                id="action-service" 
+                                wire:model.live="actionOrService" 
+                                class="w-full p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            >
+                                <option value="Action">Action</option>
+                                <option value="Service">Service</option>
+                            </select>
+                        </div>
+
+                        <!-- Testing Framework -->
+                        <div class="mb-4">
+                            <label for="testing-framework" class="block text-gray-700 text-sm font-bold mb-2">
+                                Testing Framework
+                            </label>
+                            <select 
+                                id="testing-framework" 
+                                wire:model.live="testingFramework" 
+                                class="w-full p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            >
+                                <option value="Pest">Pest</option>
+                                <option value="PHPUnit">PHPUnit</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 
@@ -37,7 +94,7 @@
                     <div>
                         <h2 class="text-xl font-semibold mb-4">Generated Rules</h2>
                         <textarea 
-                            class="w-full h-64 p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+                            class="w-full h-96 p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 font-mono text-sm" 
                             wire:model="rulesText"
                             readonly
                         ></textarea>
