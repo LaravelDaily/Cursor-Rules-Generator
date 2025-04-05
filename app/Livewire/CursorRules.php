@@ -50,14 +50,19 @@ class CursorRules extends Component
         
         // Replace template variables with their values
         $replacements = [
-            '{{ $phpVersion ?? \'\' }}' => $this->phpVersion,
-            '{{ $laravelVersion ?? \'\' }}' => $this->laravelVersion,
-            '{{ $codeStyling ?? \'PSR-12\' }}' => $this->codeStyling,
-            '{{ $actionOrService ?? \'Service\' }}' => $this->actionOrService,
-            '{{ $testingFramework ?? \'Pest\' }}' => $this->testingFramework,
+            '{{ $phpVersion }}' => $this->phpVersion === 'none' ? '' : $this->phpVersion,
+            '{{ $laravelVersion }}' => $this->laravelVersion,
+            '{{ $codeStyling }}' => $this->codeStyling,
+            '{{ $actionOrService }}' => $this->actionOrService,
+            '{{ $testingFramework }}' => $this->testingFramework,
         ];
         
-        $this->rulesText = str_replace(array_keys($replacements), array_values($replacements), $template);
+        $rulesText = str_replace(array_keys($replacements), array_values($replacements), $template);
+        
+        // Replace multiple spaces with a single space (while preserving newlines)
+        $this->rulesText = preg_replace('/[ ]{2,}/', ' ', $rulesText);
+
+        $this->rulesText = str_replace(' .', '.', $this->rulesText);
     }
 
     public function render()

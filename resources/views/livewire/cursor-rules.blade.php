@@ -95,6 +95,7 @@
                         <h2 class="text-xl font-semibold mb-4">Generated Rules</h2>
                         <textarea 
                             class="w-full h-96 p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 font-mono text-sm" 
+                            rows="40"
                             wire:model="rulesText"
                             readonly
                         ></textarea>
