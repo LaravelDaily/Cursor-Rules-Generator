@@ -94,11 +94,32 @@
                     <div>
                         <h2 class="text-xl font-semibold mb-4">Generated Rules</h2>
                         <textarea 
-                            class="w-full h-96 p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 font-mono text-sm" 
-                            rows="40"
+                            class="w-full p-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm" 
+                            rows="35"
                             wire:model="rulesText"
                             readonly
                         ></textarea>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex gap-3 mt-4">
+                            <button 
+                                type="button" 
+                                x-data="{}"
+                                x-on:click="navigator.clipboard.writeText($wire.rulesText); $el.innerText = 'Copied!'; setTimeout(() => $el.innerText = 'Copy to Clipboard', 2000)"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            >
+                                Copy to Clipboard
+                            </button>
+                            
+                            <button 
+                                type="button"
+                                x-data="{}"
+                                x-on:click="const blob = new Blob([$wire.rulesText], {type: 'text/plain'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'rules.cursorrules'; a.click(); URL.revokeObjectURL(url);"
+                                class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                            >
+                                Download as a .cursorrules File
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
