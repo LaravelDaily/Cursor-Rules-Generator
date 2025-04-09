@@ -114,10 +114,10 @@
                             <button 
                                 type="button"
                                 x-data="{}"
-                                x-on:click="const blob = new Blob([$wire.rulesText], {type: 'text/plain'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'rules.cursorrules'; a.click(); URL.revokeObjectURL(url);"
+                                x-on:click="const blob = new Blob([$wire.rulesText], {type: 'text/plain'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'laravel.mdc'; a.click(); URL.revokeObjectURL(url);"
                                 class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                             >
-                                Download as a .cursorrules File
+                                Download as a laravel.mdc File
                             </button>
                         </div>
                     </div>
